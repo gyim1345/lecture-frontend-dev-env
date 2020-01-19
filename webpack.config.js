@@ -22,8 +22,8 @@ module.exports = {
         test: /\.(scss|css)$/,
         use: [
           process.env.NODE_ENV === "production"
-            ? MiniCssExtractPlugin.loader // 프로덕션 환경
-            : "style-loader", // 개발 환경
+            ? MiniCssExtractPlugin.loader
+            : "style-loader", 
           "css-loader"
         ]
       },
@@ -32,12 +32,15 @@ module.exports = {
         loader: "url-loader",
         options: {
           name: "[name].[ext]?[hash]",
-          limit: 10000 // 10Kb
+          limit: 10000 
         }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader" 
       }
-      /**
-       * TODO: babel-loader를 구성해 보세요.
-       */
+    ]
     ]
   },
   plugins: [
@@ -52,8 +55,8 @@ module.exports = {
       minify:
         process.env.NODE_ENV === "production"
           ? {
-              collapseWhitespace: true, // 빈칸 제거
-              removeComments: true // 주석 제거
+              collapseWhitespace: true, 
+              removeComments: true 
             }
           : false,
       hash: process.env.NODE_ENV === "production"
