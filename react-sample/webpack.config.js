@@ -13,10 +13,20 @@ module.exports = {
     overlay: true,
     stats: "errors-only",
     // TODO: react-hot-loader를 사용하도록 구성하세요.
+    hot: true
   },
   module: {
     rules: [
       // TODO: js(리액트 코드 포함)와 css 파일 변환을 위한 로더를 구성하세요 
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
+      }
     ]
   },
 };
